@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Vente de CBD Val d'Yerres</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #2c5f2d;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #3d7b3e;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+        }
+        nav a:hover {
+            background-color: #2c5f2d;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #2c5f2d;
+            margin-bottom: 20px;
+        }
+        .contact-info {
+            background-color: #e8f5e9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        .contact-info p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            color: #2c5f2d;
+            margin-bottom: 5px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            font-size: 1em;
+        }
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #2c5f2d;
+        }
+        .required {
+            color: red;
+        }
+        .btn {
+            background-color: #2c5f2d;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #1e4620;
+        }
+        .success-message {
+            background-color: #4caf50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Contactez-nous</h1>
+        <p>Vente de CBD Val d'Yerres</p>
+    </header>
+    
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="produits.html">Produits</a>
+        <a href="panier.html">Panier</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    
+    <div class="container">
+        <h2>Nous sommes à votre écoute</h2>
+        
+        <div class="contact-info">
+            <h3>Nos coordonnées</h3>
+            <p>📧 <strong>Email:</strong> contact@cbd-valdyerres.fr</p>
+            <p>📞 <strong>Téléphone:</strong> 01 XX XX XX XX</p>
+            <p>🕒 <strong>Horaires:</strong> Lundi - Samedi : 10h - 19h</p>
+            <p>📍 <strong>Zone de livraison:</strong> Val d'Yerres et environs</p>
+        </div>
+        
+        <div id="success-message" class="success-message">
+            Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.
+        </div>
+        
+        <h3>Formulaire de contact</h3>
+        <form id="contact-form" onsubmit="envoyerMessage(event)">
+            <div class="form-group">
+                <label for="nom">Nom complet <span class="required">*</span></label>
+                <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required placeholder="votre.email@exemple.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="telephone">Téléphone</label>
+                <input type="tel" id="telephone" name="telephone" placeholder="01 XX XX XX XX">
+            </div>
+            
+            <div class="form-group">
+                <label for="sujet">Sujet <span class="required">*</span></label>
+                <input type="text" id="sujet" name="sujet" required placeholder="Objet de votre message">
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message <span class="required">*</span></label>
+                <textarea id="message" name="message" required placeholder="Votre message..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn">Envoyer le message</button>
+        </form>
+    </div>
+    
+    <script>
+        function envoyerMessage(event) {
+            event.preventDefault();
+            
+            const form = document.getElementById('contact-form');
+            const nom = document.getElementById('nom').value;
+            const email = document.getElementById('email').value;
+            const telephone = document.getElementById('telephone').value;
+            const sujet = document.getElementById('sujet').value;
+            const message = document.getElementById('message').value;
+            
+            // Afficher le message de succès
+            document.getElementById('success-message').style.display = 'block';
+            
+            // Simuler l'envoi (dans une vraie application, cela enverrait les données à un serveur)
+            console.log('Message envoyé:');
+            console.log('Nom:', nom);
+            console.log('Email:', email);
+            console.log('Téléphone:', telephone);
+            console.log('Sujet:', sujet);
+            console.log('Message:', message);
+            
+            // Réinitialiser le formulaire
+            form.reset();
+            
+            // Faire défiler vers le haut pour voir le message de succès
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Masquer le message après 5 secondes
+            setTimeout(() => {
+                document.getElementById('success-message').style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
