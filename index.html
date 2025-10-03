@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vente de CBD Val d'Yerres</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
             background-color: #f4f4f4;
         }
         header {
@@ -16,6 +19,35 @@
             color: white;
             padding: 20px;
             text-align: center;
+        }
+        nav {
+            background-color: #3d7b3e;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+        }
+        nav a:hover {
+            background-color: #2c5f2d;
+        }
+        #cart-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #2c5f2d;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            z-index: 1000;
         }
         .container {
             max-width: 1200px;
@@ -38,7 +70,6 @@
         }
         .communes ul {
             list-style-type: none;
-            padding: 0;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 10px;
@@ -63,20 +94,52 @@
             border-radius: 8px;
             padding: 15px;
             background-color: #fafafa;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .produit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .produit-image {
+            width: 100%;
+            height: 200px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
         }
         .produit-card h3 {
             color: #2c5f2d;
-            margin-top: 0;
+            margin: 10px 0;
         }
         .produit-type {
             color: #666;
             font-style: italic;
+            margin: 5px 0;
         }
         .produit-prix {
             font-size: 1.3em;
             font-weight: bold;
             color: #2c5f2d;
-            margin-top: 10px;
+            margin: 10px 0;
+        }
+        .btn {
+            background-color: #2c5f2d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+        }
+        .btn:hover {
+            background-color: #1e4620;
         }
         .contact {
             margin-top: 40px;
@@ -90,17 +153,26 @@
     </style>
 </head>
 <body>
+    <div id="cart-icon" onclick="window.location.href='panier.html'">🛒 Panier (<span id="cart-count">0</span>)</div>
+    
     <header>
         <h1>Vente de CBD Val d'Yerres</h1>
         <p>Votre boutique de CBD de qualité</p>
     </header>
-
+    
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="produits.html">Produits</a>
+        <a href="panier.html">Panier</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    
     <div class="container">
         <div class="intro">
             <h2>Bienvenue</h2>
             <p>Découvrez notre sélection de produits CBD de qualité premium, spécialement destinés aux habitants du Val d'Yerres. Nous proposons une gamme complète de produits naturels et légaux pour votre bien-être quotidien.</p>
         </div>
-
+        
         <div class="communes">
             <h2>Nous servons les communes du Val d'Yerres</h2>
             <ul>
@@ -114,56 +186,97 @@
                 <li>Quincy-sous-Sénart</li>
             </ul>
         </div>
-
+        
         <div class="produits">
             <h2>Nos Produits CBD</h2>
             <div class="produit-grid">
                 <div class="produit-card">
+                    <div class="produit-image">🌿</div>
                     <h3>Huile CBD 10%</h3>
                     <p class="produit-type">Huile de CBD</p>
                     <p>Flacon 10ml - Spectre complet</p>
                     <p class="produit-prix">29,90 €</p>
+                    <a href="produit-huile.html" class="btn">Voir détails</a>
+                    <button class="btn" onclick="addToCart('Huile CBD 10%', 29.90)">Ajouter au panier</button>
                 </div>
+                
                 <div class="produit-card">
+                    <div class="produit-image">🌺</div>
                     <h3>Fleurs CBD Premium</h3>
                     <p class="produit-type">Fleurs séchées</p>
                     <p>Sachet 5g - Origine biologique</p>
                     <p class="produit-prix">24,90 €</p>
+                    <a href="produit-fleurs.html" class="btn">Voir détails</a>
+                    <button class="btn" onclick="addToCart('Fleurs CBD Premium', 24.90)">Ajouter au panier</button>
                 </div>
+                
                 <div class="produit-card">
+                    <div class="produit-image">☕</div>
                     <h3>Infusion CBD Relaxation</h3>
                     <p class="produit-type">Tisane</p>
                     <p>Boîte 20 sachets</p>
                     <p class="produit-prix">12,90 €</p>
+                    <a href="produit-infusion.html" class="btn">Voir détails</a>
+                    <button class="btn" onclick="addToCart('Infusion CBD Relaxation', 12.90)">Ajouter au panier</button>
                 </div>
+                
                 <div class="produit-card">
+                    <div class="produit-image">💆</div>
                     <h3>Crème CBD Apaisante</h3>
                     <p class="produit-type">Cosmétique</p>
                     <p>Pot 50ml - Usage topique</p>
                     <p class="produit-prix">34,90 €</p>
+                    <a href="produit-creme.html" class="btn">Voir détails</a>
+                    <button class="btn" onclick="addToCart('Crème CBD Apaisante', 34.90)">Ajouter au panier</button>
                 </div>
+                
                 <div class="produit-card">
+                    <div class="produit-image">💨</div>
                     <h3>E-liquide CBD</h3>
                     <p class="produit-type">Vape</p>
                     <p>Flacon 10ml - Saveur naturelle</p>
                     <p class="produit-prix">19,90 €</p>
+                    <a href="produit-eliquide.html" class="btn">Voir détails</a>
+                    <button class="btn" onclick="addToCart('E-liquide CBD', 19.90)">Ajouter au panier</button>
                 </div>
+                
                 <div class="produit-card">
+                    <div class="produit-image">💊</div>
                     <h3>Gélules CBD</h3>
                     <p class="produit-type">Complément</p>
                     <p>Boîte 30 gélules - 10mg/gélule</p>
                     <p class="produit-prix">27,90 €</p>
+                    <a href="produit-gelules.html" class="btn">Voir détails</a>
+                    <button class="btn" onclick="addToCart('Gélules CBD', 27.90)">Ajouter au panier</button>
                 </div>
             </div>
         </div>
-
+        
         <div class="contact">
             <h2>Contact</h2>
             <p><strong>Email:</strong> contact@cbd-valdyerres.fr</p>
             <p><strong>Téléphone:</strong> 01 XX XX XX XX</p>
             <p><strong>Horaires:</strong> Lundi - Samedi : 10h - 19h</p>
             <p><strong>Adresse:</strong> Zone de livraison : Val d'Yerres et environs</p>
+            <a href="contact.html" class="btn">Nous contacter</a>
         </div>
     </div>
+    
+    <script>
+        function addToCart(nom, prix) {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            cart.push({nom: nom, prix: prix});
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            alert(nom + ' ajouté au panier !');
+        }
+        
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            document.getElementById('cart-count').textContent = cart.length;
+        }
+        
+        updateCartCount();
+    </script>
 </body>
 </html>
